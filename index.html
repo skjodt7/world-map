@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Campaign Map</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #111;
+    }
+    #map-container {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+
+  <!-- Pan & Zoom library -->
+  <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+
+<div id="map-container">
+  <!-- Load your SVG -->
+  <object id="svg-object" type="image/svg+xml" data="world-map.svg"></object>
+</div>
+
+<script>
+  document.getElementById('svg-object').addEventListener('load', function () {
+    const svg = this.contentDocument.querySelector('svg');
+    svgPanZoom(svg, {
+      zoomEnabled: true,
+      controlIconsEnabled: true,
+      fit: true,
+      center: true,
+      minZoom: 0.5,
+      maxZoom: 20
+    });
+  });
+</script>
+
+</body>
+</html>
